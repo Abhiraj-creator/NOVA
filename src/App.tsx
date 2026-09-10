@@ -13,7 +13,7 @@ export default function App() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
-    const lenis = new Lenis({ lerp: 0.09 })
+    const lenis = new Lenis({ lerp: 0.09, anchors: true })
     let frameId = 0
     const raf = (time: number) => { lenis.raf(time); frameId = requestAnimationFrame(raf) }
     frameId = requestAnimationFrame(raf)

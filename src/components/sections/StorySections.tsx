@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { gsap } from 'gsap'
 import { ArrowRight, CircleDot, Sparkles } from 'lucide-react'
 import { features, stats } from '../../data/site'
 import type { ProductView } from '../../data/site'
@@ -21,6 +22,28 @@ export function ProductSection() {
 
 export function Workflow() { const steps = [['01', 'Connect', 'Bring projects, people, and tools into one shared workspace.'], ['02', 'Organize', 'NOVA understands the shape of the work and who owns it.'], ['03', 'Automate', 'Turn repeated coordination into predictable, lightweight flow.'], ['04', 'Accelerate', 'Use project signals to make a better decision earlier.']]; return <section className="py-24 sm:py-32"><div className="shell"><Reveal><SectionHeading eyebrow="03 — How it works" title={<>From scattered work<br />to clear momentum.</>} /></Reveal><div className="mt-16 grid border-y border-border lg:grid-cols-4">{steps.map(([number, title, description], index) => <Reveal key={number} delay={index * .06} className="relative border-b border-border px-0 py-7 last:border-b-0 lg:border-b-0 lg:border-r lg:px-5 lg:first:pl-0 lg:last:border-r-0"><p className="font-mono text-[10px] text-accent">{number}</p><div className="my-7 flex h-8 items-center"><span className="h-px w-full bg-border" /><CircleDot size={16} className="-ml-1 shrink-0 text-accent" /></div><h3 className="text-xl font-semibold tracking-[-.045em]">{title}</h3><p className="mt-3 max-w-xs text-sm leading-relaxed text-ink-muted">{description}</p></Reveal>)}</div></div></section> }
 
-export function Stats() { return <section className="border-y border-white/10 bg-[#1c1e22] py-14 text-white"><div className="shell"><p className="eyebrow mb-10 text-[#ff73a4]">Illustrative product data</p><div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">{stats.map((stat, index) => <Reveal key={stat.label} delay={index * .05}><p className="text-4xl font-semibold tracking-[-.07em]">{stat.value}</p><p className="mt-2 text-sm text-white/55">{stat.label}</p></Reveal>)}</div></div></section> }
+export function Stats() { return <section className="border-y border-white/10 bg-[#1c1e22] py-14 text-white"><div className="shell"><p className="eyebrow mb-10 text-[#ff73a4]">Illustrative product data</p><div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">{stats.map((stat, index) => <Reveal key={stat.label} delay={index * .05}><AnimatedStat value={stat.value} label={stat.label} /></Reveal>)}</div></div></section> }
 
 export function ProductNote() { return <section className="bg-surface py-20"><div className="shell grid gap-8 lg:grid-cols-[1fr_.6fr]"><Reveal><p className="text-3xl font-semibold leading-[1.02] tracking-[-.06em] sm:text-5xl">Work moves faster when the intelligence is built into the workflow—not bolted onto it.</p></Reveal><Reveal delay={.08}><div className="border-l-2 border-accent pl-5"><Sparkles size={18} className="mb-4 text-accent" /><p className="text-sm leading-relaxed text-ink-muted">NOVA is a fictional product concept. Its dashboards, automation, and collaboration patterns are designed to demonstrate a realistic frontend experience.</p><a href="#solutions" className="focus-ring mt-5 inline-flex items-center gap-2 text-sm font-bold">See the team workflows <ArrowRight size={15} /></a></div></Reveal></div></section> }
+
+function AnimatedStat({ value, label }: { value: string; label: string }) {
+  const target = Number.parseFloat(value)
+  const suffix = value.replace(/[\d.]/g, '')
+  const decimal = value.includes('.')
+  const elementRef = useRef<HTMLParagraphElement>(null)
+
+  useEffect(() => {
+    const element = elementRef.current
+    if (!element || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return
+      const counter = { value: 0 }
+      gsap.to(counter, { value: target, duration: 1, ease: 'power2.out', onUpdate: () => { element.textContent = `${decimal ? counter.value.toFixed(1) : Math.round(counter.value)}${suffix}` } })
+      observer.disconnect()
+    }, { threshold: .5 })
+    observer.observe(element)
+    return () => observer.disconnect()
+  }, [decimal, suffix, target])
+
+  return <><p ref={elementRef} className="text-4xl font-semibold tracking-[-.07em]">{value}</p><p className="mt-2 text-sm text-white/55">{label}</p></>
+}
