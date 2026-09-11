@@ -31,4 +31,4 @@ Use a modern grotesk-style system stack with high-weight display headings, compa
 
 ## Animation and Icons
 
-GSAP supplies subtle entrance and UI transitions with reduced-motion support. Lucide React provides stroke-based icons. Avoid gradients, glassmorphism, neon effects, and generic AI imagery.
+GSAP supplies subtle entrance and UI transitions with reduced-motion support. The sticky navigation uses restrained adaptive translucency to maintain contrast over light and dark sections. Lucide React provides stroke-based icons. Avoid gradients, neon effects, and generic AI imagery.

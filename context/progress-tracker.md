@@ -18,10 +18,12 @@
 - Implemented responsive navigation, Lenis scrolling, GSAP reveals, FAQ accordion, pricing toggle, testimonial carousel, demo modal, newsletter validation, and back-to-top behavior.
 - Added GSAP-powered statistic counters, modal focus trapping, and mobile-navigation keyboard handling.
 - Verified the production build succeeds.
+- Tuned Lenis scrolling, added a viewport-aware sticky navbar, and connected product mockup controls to local demo state.
+- Verified the final interaction refinement production build succeeds.
 
 ## In Progress
 
-- None.
+- Ready for local preview with `npm run dev`.
 
 ## Next Up
 
