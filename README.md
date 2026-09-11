@@ -6,6 +6,17 @@ NOVA is a fictional AI-powered productivity platform for teams, presented as a p
 
 The site explains how one workspace can connect project management, collaboration, AI assistance, workflow automation, analytics, scheduling, and integrations. All product data, teams, testimonials, metrics, and plans are fictional.
 
+## Screenshots
+
+![NOVA hero section](./public/Screenshot%202026-09-11%20214443.png)
+![NOVA capabilities section](./public/Screenshot%202026-09-11%20214453.png)
+![NOVA workflow section](./public/Screenshot%202026-09-11%20214509.png)
+![NOVA pricing section](./public/Screenshot%202026-09-11%20214519.png)
+![NOVA team notes section](./public/Screenshot%202026-09-11%20214528.png)
+![NOVA product metrics section](./public/Screenshot%202026-09-11%20214545.png)
+![NOVA product overview section](./public/Screenshot%202026-09-11%20214555.png)
+![NOVA resource FAQ section](./public/Screenshot%202026-09-11%20214607.png)
+
 ## Features
 
 - Editorial product landing page with original React-built product mockups
@@ -59,7 +70,7 @@ The site uses static typed content, local UI state, CSS layout primitives, and s
 
 ## AI Tools Used
 
-This project was developed with AI assistance. The implementation and product content were reviewed and adapted for the assignment specification.
+This project was developed with AI assistance. Like Codex , The implementation and product content were reviewed and adapted for the assignment specification.
 
 ## Future Improvements
 
