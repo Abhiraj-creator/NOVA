@@ -20,6 +20,7 @@
 - Verified the production build succeeds.
 - Tuned Lenis scrolling, added a viewport-aware sticky navbar, and connected product mockup controls to local demo state.
 - Verified the final interaction refinement production build succeeds.
+- Added submission-ready design, technology, architecture, challenge, AI-use, and evaluation-rubric documentation to the README.
 
 ## In Progress
 
